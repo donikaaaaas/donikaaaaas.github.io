@@ -175,5 +175,5 @@ var getScriptPromisify = (src) => {
     }
   }
 
-  customElements.define('com-sap-sample-echarts-bar-gradient-binding', Main)
+  customElements.define('com-sac-barchartsroundtestds2906', Main)
 })()
