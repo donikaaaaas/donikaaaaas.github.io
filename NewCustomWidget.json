@@ -1,7 +1,7 @@
 {
 	"name": "mycustomwidget",
 	"description": "Rounded Bar Charts",
-	"newInstancePrefix": ""roundedbarcharts",
+	"newInstancePrefix": "roundedbarcharts",
 	"eula": "",
 	"vendor": "DonikaSulaj",
 	"license": "",
