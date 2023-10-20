@@ -2,8 +2,7 @@
   "eula": "",
   "vendor": "DonikaSulaj",
   "license": "",
-  "id": "com.sap.sample.chartsrundtestds2906",
-  "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAABACAYAAABP97SyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAwUlEQVRoge3XwQ3CMAxGYRsxDXCDgWANFugYTMStmccsQMnBRO4fve8aRc1TI1kxA1DJqw/Qc70vzd1O39bCor1fz8uv/Ycxx/qfrTgzMzc/9/bvPjCLQHUEqiNQHYHqCFRHoLrpA4+jP5B9z2UN/4PZ91zW9FeUQHUEqps+sDsHq+dYVvcPVs+xrOmvKIHqCFRHoDoC1RGojkB1BKojUB2B6ghU1w0Mi7a5FrbufT+AWn57LFF9iJEYE+qmDwRQ6wO/gymA985iUgAAAABJRU5ErkJggg==",
+  "id": "sacbarhartsrundtestds2906",
   "version": "1.0.0",
   "supportsMobile": true,
   "name": "ECharts BarGradientBinding",
@@ -12,7 +11,7 @@
   "webcomponents": [
     {
       "kind": "main",
-      "tag": "com-sap-sample-chartsrundtestds2906",
+      "tag": "sacbarchartsrundtestds2906",
       "url": "https://donikaaaaas.github.io/Webcomponents.js",
       "integrity": "",
       "ignoreIntegrity": true
