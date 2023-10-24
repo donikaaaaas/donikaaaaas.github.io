@@ -2,7 +2,7 @@
     "eula": "",
     "vendor": "SAP",
     "license": "",
-    "id": "com.sap.sac.sample.echarts.custom_pie_chart",
+    "id": "TEST",
     "version": "1.0.0",
     "name": "ECharts Custom Pie Chart TEST",
     "newInstancePrefix": "EChartCustomPieChartTEST",
