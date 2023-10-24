@@ -6,7 +6,7 @@
     "version": "1.0.0",
     "name": "ECharts Custom Pie Chart TEST",
     "newInstancePrefix": "EChartCustomPieChartTEST",
-    "description": "A sample custom widget wrapped EChart Custom Pie Chart",
+    "description": "A sample custom widget wrapped EChart Custom Pie Chart TEST",
     "webcomponents": [
       {
         "kind": "main",
