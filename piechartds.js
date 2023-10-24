@@ -127,5 +127,5 @@ var getScriptPromisify = (src) => {
     }
   }
 
-  customElements.define("com-sap-sample-echarts-custom_pie_chart", Main);
+  customElements.define("com-sap-sample-echarts-custom_pie_chart", CustomPieSample);
 })();
