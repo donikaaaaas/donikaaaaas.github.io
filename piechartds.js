@@ -7,11 +7,11 @@ var getScriptPromisify = (src) => {
 (function () {
   const prepared = document.createElement("template");
   prepared.innerHTML = `
-        <style>
-        </style>
-        <div id="root" style="width: 100%; height: 100%;">
-        </div>
-      `;
+    <style>
+    </style>
+    <div id="root" style="width: 100%; height: 100%;">
+    </div>
+  `;
   class CustomPieSample extends HTMLElement {
     constructor() {
       super();
@@ -37,8 +37,7 @@ var getScriptPromisify = (src) => {
 
     async render() {
       await getScriptPromisify(
-        "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
-        
+        "https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"
       );
 
       if (!this._myDataSource || this._myDataSource.state !== "success") {
@@ -50,67 +49,54 @@ var getScriptPromisify = (src) => {
       const data = this._myDataSource.data.map((data) => {
         return {
           name: data[dimension].label,
-          value: data[measure].raw
-        }
-      }).sort(function(a, b){
-        return a.value - b.value
-      })
+          value: data[measure].raw,
+        };
+      });
 
-      const myChart = echarts.init(this._root, "wight")
+      const myChart = echarts.init(this._root, "light"); // Specify 'light' theme
       const option = {
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff",
         title: {
-          text: 'Customized Pie',
-          left: 'center',
+          text: "Customized Pie",
+          left: "center",
           top: 20,
           textStyle: {
-            color: '#00000'
-          }
+            color: "#000000",
+          },
         },
         tooltip: {
-          trigger: 'item'
-        },
-        visualMap: {
-          show: false,
-          min: 0,
-          max: data[data.length - 1].value * 1.5,
-          inRange: {
-            colorLightness: [0, 1]
-          }
+          trigger: "item",
         },
         series: [
           {
-            name: '',
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '50%'],
+            name: "",
+            type: "pie",
+            radius: "55%",
+            center: ["50%", "50%"],
             data,
-         
-            roseType: 'radius',
             label: {
-              color: '#a6a8ab'
+              color: "#a6a8ab",
             },
             labelLine: {
               lineStyle: {
-                color: '#a6a8ab'
+                color: "#a6a8ab",
               },
               smooth: 0.2,
               length: 10,
-              length2: 20
+              length2: 20,
             },
             itemStyle: {
-              color: '#b51b26',
+              color: "#b51b26",
               shadowBlur: 150,
-              shadowColor: 'rgba(0, 0, 0, 0.3)'
+              shadowColor: "rgba(0, 0, 0, 0.3)",
             },
-            animationType: 'scale',
-            animationEasing: 'elasticOut',
+            animationType: "scale",
+            animationEasing: "elasticOut",
             animationDelay: function (idx) {
               return Math.random() * 200;
-            }
-            
-          }
-        ]
+            },
+          },
+        ],
       };
       myChart.setOption(option);
     }
