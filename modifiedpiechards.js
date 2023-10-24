@@ -70,7 +70,7 @@ var getScriptPromisify = (src) => {
           {
             name: "Access from",
             type: "pie",
-            radius: ["30%", "60%"],
+            radius: ["40%", "70%"],
             avoidLabelOverlap: false,
             label: {
               show: false,
