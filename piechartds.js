@@ -57,7 +57,8 @@ var getScriptPromisify = (src) => {
       const option = {
         backgroundColor: "#ffffff",
         title: {
-          text: "Customized Pie",
+          text: "Customized Pie 4P",
+          subtext: "DS", // Added missing comma here
           left: "center",
           top: 20,
           textStyle: {
@@ -69,34 +70,19 @@ var getScriptPromisify = (src) => {
         },
         series: [
           {
-            name: "",
+            name: "Access from",
             type: "pie",
-            radius: "55%",
-            center: ["50%", "50%"],
+            radius: "50%",
             data,
-            label: {
-              color: "#a6a8ab",
-            },
-            labelLine: {
-              lineStyle: {
-                color: "#a6a8ab",
-              },
-              smooth: 0.2,
-              length: 10,
-              length2: 20,
-            },
-            itemStyle: {
-              color: "#b51b26",
-              shadowBlur: 150,
-              shadowColor: "rgba(0, 0, 0, 0.3)",
-            },
-            animationType: "scale",
-            animationEasing: "elasticOut",
-            animationDelay: function (idx) {
-              return Math.random() * 200;
-            },
-          },
-        ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
       };
       myChart.setOption(option);
     }
