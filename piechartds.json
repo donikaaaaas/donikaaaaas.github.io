@@ -5,7 +5,7 @@
     "id": "com.sap.sac.sample.echarts.custom_pie_chart",
     "version": "1.0.0",
     "name": "ECharts Custom Pie Chart TEST",
-    "newInstancePrefix": "EChartCustomPieChart",
+    "newInstancePrefix": "EChartCustomPieChartTEST",
     "description": "A sample custom widget wrapped EChart Custom Pie Chart",
     "webcomponents": [
       {
