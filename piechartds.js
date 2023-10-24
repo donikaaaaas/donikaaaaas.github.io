@@ -38,6 +38,7 @@ var getScriptPromisify = (src) => {
     async render() {
       await getScriptPromisify(
         "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
+        
       );
 
       if (!this._myDataSource || this._myDataSource.state !== "success") {
@@ -50,14 +51,14 @@ var getScriptPromisify = (src) => {
         return {
           name: data[dimension].label,
           value: data[measure].raw
-        };
-      }).sort(function (a, b) {
-        return a.value - b.value;
-      });
+        }
+      }).sort(function(a, b){
+        return a.value - b.value
+      })
 
-      const myChart = echarts.init(this._root, "wight");
+      const myChart = echarts.init(this._root, "wight")
       const option = {
-        backgroundColor: '#f2f7fd', // Background color (shades of blue)
+        backgroundColor: '#ffffff',
         title: {
           text: 'Customized Pie',
           left: 'center',
@@ -84,6 +85,7 @@ var getScriptPromisify = (src) => {
             radius: '55%',
             center: ['50%', '50%'],
             data,
+         
             roseType: 'radius',
             label: {
               color: '#a6a8ab'
@@ -97,21 +99,7 @@ var getScriptPromisify = (src) => {
               length2: 20
             },
             itemStyle: {
-              color: function (params) {
-                // Generate shades of blue
-                const colorList = [
-                  '#5470c6',
-                  '#91cc75',
-                  '#fac858',
-                  '#ee6666',
-                  '#73c0de',
-                  '#3ba272',
-                  '#fc8452',
-                  '#9a60b4',
-                  '#ea7ccc',
-                ];
-                return colorList[params.dataIndex % colorList.length];
-              },
+              color: '#b51b26',
               shadowBlur: 150,
               shadowColor: 'rgba(0, 0, 0, 0.3)'
             },
@@ -120,6 +108,7 @@ var getScriptPromisify = (src) => {
             animationDelay: function (idx) {
               return Math.random() * 200;
             }
+            
           }
         ]
       };
