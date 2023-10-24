@@ -10,7 +10,6 @@ var getScriptPromisify = (src) => {
     <div id="root" style="width: 100%; height: 100%;">
     </div>
   `;
-
   class CustomPieSample extends HTMLElement {
     constructor() {
       super();
@@ -45,14 +44,10 @@ var getScriptPromisify = (src) => {
 
       const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
       const measure = this._myDataSource.metadata.feeds.measures.values[0];
-      const data = this._myDataSource.data.map((data, index) => {
-        const blueShade = 30 + index * 10; // Generate different shades of blue
+      const data = this._myDataSource.data.map((data) => {
         return {
           name: data[dimension].label,
           value: data[measure].raw,
-          itemStyle: {
-            color: `rgba(0, 0, ${blueShade}, 0.7)`, // Change the color to shades of blue
-          },
         };
       });
 
@@ -63,7 +58,7 @@ var getScriptPromisify = (src) => {
           text: "Modified Customized Pie 4P",
           subtext: "DS",
           left: "center",
-          top: 5,
+          top: 20,
           textStyle: {
             color: "#000000",
           },
@@ -75,7 +70,7 @@ var getScriptPromisify = (src) => {
           {
             name: "Access from",
             type: "pie",
-            radius: ["40%", "70%"],
+            radius: ["30%", "60%"],
             avoidLabelOverlap: false,
             label: {
               show: false,
