@@ -2,7 +2,7 @@
   "eula": "",
   "vendor": "DonikaSulaj",
   "license": "",
-  "id": "com.sap.sac.sample.echarts.prepared",
+  "id": "TEST",
   "version": "1.0.0",
   "name": "Pie Chart",
   "newInstancePrefix": "PieChart",
@@ -10,7 +10,7 @@
   "webcomponents": [
     {
       "kind": "main",
-      "tag": "com-sap-sample-echarts-prepared",
+      "tag": "com-sap-sample-echarts-pie-chart",
       "url": "https://donikaaaaas.github.io/piechart/piechart.js",
       "integrity": "",
       "ignoreIntegrity": true
