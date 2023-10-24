@@ -1,11 +1,11 @@
 {
   "eula": "",
-  "vendor": "SAP",
+  "vendor": "DonikaSulaj",
   "license": "",
   "id": "com.sap.sac.sample.echarts.prepared",
   "version": "1.0.0",
-  "name": "ECharts Prepared",
-  "newInstancePrefix": "EChartPrepared",
+  "name": "Pie Chart",
+  "newInstancePrefix": "PieChart",
   "description": "A sample custom widget wrapped EChart Prepared",
   "webcomponents": [
     {
