@@ -77,6 +77,8 @@ var getScriptPromisify = (src) => {
     <style>
     </style>
     <div id="root" style="width: 100%; height: 100%;">
+      <!-- Replace this div with the pie chart -->
+      <div id="pie-chart" style="width: 100%; height: 100%;"></div>
     </div>
   `
 
@@ -112,11 +114,11 @@ var getScriptPromisify = (src) => {
       }
       if (!this.myDataBinding || this.myDataBinding.state !== 'success') { return }
 
-      const myChart = this._myChart = echarts.init(this._root)
+      const myChart = this._myChart = echarts.init(this._root.querySelector('#pie-chart')); // Select the pie chart div
       const { option } = getOption(this.myDataBinding)
       myChart.setOption(option)
     }
   }
 
   customElements.define('com-sap-sample-echarts-pie-chart', Main)
-})()
+})();
