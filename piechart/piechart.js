@@ -1,124 +1,120 @@
 var getScriptPromisify = (src) => {
-  return new Promise(resolve => {
-    $.getScript(src, resolve)
-  })
-}
+  return new Promise((resolve) => {
+    $.getScript(src, resolve);
+  });
+};
 
 (function () {
-  const parseMetadata = metadata => {
-    const { dimensions: dimensionsMap, mainStructureMembers: measuresMap } = metadata
-    const dimensions = []
-    for (const key in dimensionsMap) {
-      const dimension = dimensionsMap[key]
-      dimensions.push({ key, ...dimension })
-    }
-    const measures = []
-    for (const key in measuresMap) {
-      const measure = measuresMap[key]
-      measures.push({ key, ...measure })
-    }
-    return { dimensions, measures, dimensionsMap, measuresMap }
-  }
-
-  const parseDataBinding = (dataBinding) => {
-    const { data, metadata } = dataBinding
-    const { dimensions, measures } = parseMetadata(metadata)
-
-    const dataAxis = dimensions.map(dimension => dimension.key);
-    const data = measures.map(measure => measure.key);
-
-    return { data, dataAxis };
-  }
-
-  const getOption = (dataBinding) => {
-    const { data, dataAxis } = parseDataBinding(dataBinding);
-
-    const option = {
-      title: {
-        text: 'Feature Sample: Pie Chart',
-        left: 'center',
-      },
-      tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)',
-      },
-      legend: {
-        orient: 'vertical',
-        left: 'left',
-        data: dataAxis,
-      },
-      series: [
-        {
-          name: 'Category',
-          type: 'pie',
-          radius: '50%',
-          center: ['50%', '60%'],
-          data: data.map((value, index) => ({
-            value: value,
-            name: dataAxis[index],
-          })),
-          emphasis: {
-            scale: true,
-            focus: 'series',
-          },
-          label: {
-            show: true,
-            formatter: '{b} ({d}%)',
-          },
-        },
-      ],
-    };
-
-    return { option, data, dataAxis };
-  }
-
-  const template = document.createElement('template')
-  template.innerHTML = `
-    <style>
-    </style>
-    <div id="root" style="width: 100%; height: 100%;">
-      <!-- Replace this div with the pie chart -->
-      <div id="pie-chart" style="width: 100%; height: 100%;"></div>
-    </div>
-  `
-
-  class Main extends HTMLElement {
+  const prepared = document.createElement("template");
+  prepared.innerHTML = `
+        <style>
+        </style>
+        <div id="root" style="width: 100%; height: 100%;">
+        </div>
+      `;
+  class CustomPieSample extends HTMLElement {
     constructor() {
-      super()
+      super();
 
-      this._shadowRoot = this.attachShadow({ mode: 'open' })
-      this._shadowRoot.appendChild(template.content.cloneNode(true))
+      this._shadowRoot = this.attachShadow({ mode: "open" });
+      this._shadowRoot.appendChild(prepared.content.cloneNode(true));
 
-      this._root = this._shadowRoot.getElementById('root')
+      this._root = this._shadowRoot.getElementById("root");
 
-      this._props = {}
+      this._props = {};
 
-      this.render()
+      this.render();
     }
 
     onCustomWidgetResize(width, height) {
-      this.render()
+      this.render();
     }
 
-    onCustomWidgetAfterUpdate(changedProps) {
-      this.render()
+    set myDataSource(dataBinding) {
+      this._myDataSource = dataBinding;
+      this.render();
     }
 
     async render() {
-      if (!window.echarts) {
-        await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
+      await getScriptPromisify(
+        "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
+        
+      );
+
+      if (!this._myDataSource || this._myDataSource.state !== "success") {
+        return;
       }
 
-      if (this._myChart) {
-        echarts.dispose(this._myChart)
-      }
-      if (!this.myDataBinding || this.myDataBinding.state !== 'success') { return }
+      const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
+      const measure = this._myDataSource.metadata.feeds.measures.values[0];
+      const data = this._myDataSource.data.map((data) => {
+        return {
+          name: data[dimension].label,
+          value: data[measure].raw
+        }
+      }).sort(function(a, b){
+        return a.value - b.value
+      })
 
-      const myChart = this._myChart = echarts.init(this._root.querySelector('#pie-chart')); // Select the pie chart div
-      const { option } = getOption(this.myDataBinding)
-      myChart.setOption(option)
+      const myChart = echarts.init(this._root, "wight")
+      const option = {
+        backgroundColor: '#ffffff',
+        title: {
+          text: 'Customized Pie',
+          left: 'center',
+          top: 20,
+          textStyle: {
+            color: '#00000'
+          }
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        visualMap: {
+          show: false,
+          min: 0,
+          max: data[data.length - 1].value * 1.5,
+          inRange: {
+            colorLightness: [0, 1]
+          }
+        },
+        series: [
+          {
+            name: '',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '50%'],
+            data,
+         
+            roseType: 'radius',
+            label: {
+              color: '#a6a8ab'
+            },
+            labelLine: {
+              lineStyle: {
+                color: '#a6a8ab'
+              },
+              smooth: 0.2,
+              length: 10,
+              length2: 20
+            },
+            itemStyle: {
+              color: '#93c939',
+              shadowBlur: 150,
+              shadowColor: 'rgba(0, 0, 0, 0.3)'
+            },
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+              return Math.random() * 200;
+            }
+            
+          }
+        ]
+      };
+      myChart.setOption(option);
     }
   }
 
-  customElements.define('com-sap-sample-echarts-pie-chart', Main)
+  customElements.define("com-sap-sample-echarts-custom_pie_chart", main);
 })();
