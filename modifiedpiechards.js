@@ -46,11 +46,12 @@ var getScriptPromisify = (src) => {
       const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
       const measure = this._myDataSource.metadata.feeds.measures.values[0];
       const data = this._myDataSource.data.map((data, index) => {
+        const blueShade = 30 + index * 10; // Generate different shades of blue
         return {
           name: data[dimension].label,
           value: data[measure].raw,
           itemStyle: {
-            color: `rgba(0, 0, ${index * 30}, 0.7)`, // Change the color to shades of blue
+            color: `rgba(0, 0, ${blueShade}, 0.7)`, // Change the color to shades of blue
           },
         };
       });
@@ -62,7 +63,7 @@ var getScriptPromisify = (src) => {
           text: "Modified Customized Pie 4P",
           subtext: "DS",
           left: "center",
-          top: 50,
+          top: 5,
           textStyle: {
             color: "#000000",
           },
