@@ -1,12 +1,13 @@
 {
   "eula": "",
-  "vendor": "DonikaSulaj",
+  "vendor": "SAP",
   "license": "",
   "id": "TEST",
   "version": "1.0.0",
+  "supportsMobile": true,
   "name": "Pie Chart",
   "newInstancePrefix": "PieChart",
-  "description": "A sample custom widget wrapped EChart Prepared",
+  "description": "A sample custom widget Pie Chart",
   "webcomponents": [
     {
       "kind": "main",
@@ -17,17 +18,31 @@
     }
   ],
   "properties": {
-		"width": {
-			"type": "integer",
-			"default": 600
-		},
-		"height": {
-			"type": "integer",
-			"default": 420
-		}
+    "width": {
+      "type": "integer",
+      "default": 600
+    },
+    "height": {
+      "type": "integer",
+      "default": 420
+    }
   },
-  "methods": {
-  },
-  "events": {
+  "methods": {},
+  "events": {},
+  "dataBindings": {
+    "myDataBinding": {
+      "feeds": [
+        {
+          "id": "dimensions",
+          "description": "Dimensions",
+          "type": "dimension"
+        },
+        {
+          "id": "measures",
+          "description": "Measures",
+          "type": "mainStructureMember"
+        }
+      ]
+    }
   }
 }
