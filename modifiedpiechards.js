@@ -10,6 +10,7 @@ var getScriptPromisify = (src) => {
     <div id="root" style="width: 100%; height: 100%;">
     </div>
   `;
+
   class CustomPieSample extends HTMLElement {
     constructor() {
       super();
@@ -44,10 +45,13 @@ var getScriptPromisify = (src) => {
 
       const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
       const measure = this._myDataSource.metadata.feeds.measures.values[0];
-      const data = this._myDataSource.data.map((data) => {
+      const data = this._myDataSource.data.map((data, index) => {
         return {
           name: data[dimension].label,
           value: data[measure].raw,
+          itemStyle: {
+            color: `rgba(0, 0, ${index * 30}, 0.7)`, // Change the color to shades of blue
+          },
         };
       });
 
