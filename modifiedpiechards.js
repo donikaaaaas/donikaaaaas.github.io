@@ -7,8 +7,6 @@ var getScriptPromisify = (src) => {
 (function () {
   const prepared = document.createElement("template");
   prepared.innerHTML = `
-    <style>
-    </style>
     <div id="root" style="width: 100%; height: 100%;">
     </div>
   `;
@@ -21,7 +19,7 @@ var getScriptPromisify = (src) => {
 
       this._root = this._shadowRoot.getElementById("root");
 
-      this._props = {};
+      this._myDataSource = null; // Initialize _myDataSource
 
       this.render();
     }
@@ -58,7 +56,7 @@ var getScriptPromisify = (src) => {
         backgroundColor: "#ffffff",
         title: {
           text: "Modified Customized Pie 4P",
-          subtext: "DS", 
+          subtext: "DS",
           left: "center",
           top: 20,
           textStyle: {
@@ -72,32 +70,32 @@ var getScriptPromisify = (src) => {
           {
             name: "Access from",
             type: "pie",
-            radius: ['40%', '70%'],
+            radius: ["40%", "70%"],
             avoidLabelOverlap: false,
             label: {
-            show: false,
-            position: 'center'
+              show: false,
+              position: "center",
             },
             emphasis: {
-           label: {
-           show: true,
-           fontSize: 40,
-           fontWeight: 'bold'
-           }
-           },
-           labelLine: {
-           show: false
-           },
+              label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: "bold",
+              },
+            },
+            labelLine: {
+              show: false,
+            },
             data,
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
+          },
+        ],
       };
       myChart.setOption(option);
     }
