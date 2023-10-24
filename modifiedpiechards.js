@@ -65,6 +65,10 @@ var getScriptPromisify = (src) => {
         tooltip: {
           trigger: "item",
         },
+        legend: {
+        top: '5%',
+        left: 'center'
+        },
         series: [
           {
             name: "Access from",
