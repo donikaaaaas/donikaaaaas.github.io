@@ -4,14 +4,14 @@
     "license": "",
     "id": "TEST",
     "version": "1.0.0",
-    "name": "ECharts Custom Pie Chart TEST",
-    "newInstancePrefix": "EChartCustomPieChartTEST",
-    "description": "A sample custom widget wrapped EChart Custom Pie Chart TEST",
+    "name": "EinAus TEST",
+    "newInstancePrefix": "EinAusTEST",
+    "description": "A sample custom widget EinAus TEST",
     "webcomponents": [
       {
         "kind": "main",
         "tag": "com-sap-sample-echarts-custom_pie_chart",
-        "url": "https://donikaaaaas.github.io/modifiedpiechards.js",
+        "url": "https://donikaaaaas.github.io/einausklappen.js",
         "integrity": "",
         "ignoreIntegrity": true
       }
