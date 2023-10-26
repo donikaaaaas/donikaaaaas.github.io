@@ -75,7 +75,6 @@ var getScriptPromisify = (src) => {
         backgroundColor: "#ffffff",
         title: {
           text: "Modified Customized Pie 4P",
-          subtext: "DS",
           left: "center",
           top: 20,
           textStyle: {
