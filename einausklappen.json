@@ -6,7 +6,7 @@
     "version": "1.0.0",
     "name": "EinAus TEST",
     "newInstancePrefix": "EinAusTEST",
-    "description": "A sample custom widget EinAus TEST",
+    "description": "A sample custom widget EinAus TEST1",
     "webcomponents": [
       {
         "kind": "main",
