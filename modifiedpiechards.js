@@ -7,9 +7,15 @@ var getScriptPromisify = (src) => {
 (function () {
   const prepared = document.createElement("template");
   prepared.innerHTML = `
-    <div id="root" style="width: 100%; height: 100%;">
+    <div style="width: 100%; height: 100%;">
+      <button id="openButton">Open Chart</button>
+      <div id="chartContainer" style="display: none;">
+        <div id="root" style="width: 100%; height: 100%;">
+        </div>
+      </div>
     </div>
   `;
+
   class CustomPieSample extends HTMLElement {
     constructor() {
       super();
@@ -18,22 +24,35 @@ var getScriptPromisify = (src) => {
       this._shadowRoot.appendChild(prepared.content.cloneNode(true));
 
       this._root = this._shadowRoot.getElementById("root");
+      this._chartContainer = this._shadowRoot.getElementById("chartContainer");
+      this._openButton = this._shadowRoot.getElementById("openButton");
 
       this._myDataSource = null; // Initialize _myDataSource
+      this._chartOpened = false;
 
-      this.render();
+      this._openButton.addEventListener("click", () => {
+        if (!this._chartOpened) {
+          this._chartOpened = true;
+          this._chartContainer.style.display = "block";
+          this.renderChart();
+        }
+      });
     }
 
     onCustomWidgetResize(width, height) {
-      this.render();
+      this.renderChart();
     }
 
     set myDataSource(dataBinding) {
       this._myDataSource = dataBinding;
-      this.render();
+      this.renderChart();
     }
 
-    async render() {
+    async renderChart() {
+      if (!this._chartOpened) {
+        return;
+      }
+
       await getScriptPromisify(
         "https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"
       );
@@ -64,10 +83,6 @@ var getScriptPromisify = (src) => {
         },
         tooltip: {
           trigger: "item",
-        },
-        legend: {
-        top: '5%',
-        left: 'center'
         },
         series: [
           {
