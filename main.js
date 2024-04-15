@@ -36,72 +36,50 @@ var getScriptPromisify = (src) => {
     }
 
     async render() {
-      await getScriptPromisify(
-        "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
+  await getScriptPromisify(
+    "https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"
+  );
 
-      );
+  if (!this._myDataSource || this._myDataSource.state !== "success") {
+    return;
+  }
 
-      if (!this._myDataSource || this._myDataSource.state !== "success") {
-        return;
-      }
+  const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
+  const measure = this._myDataSource.metadata.feeds.measures.values[0];
+  const data = this._myDataSource.data.map((data) => {
+    return {
+      name: data[dimension].label,
+      value: data[measure].raw,
+    };
+  });
 
-      const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
-      const measure = this._myDataSource.metadata.feeds.measures.values[0];
-      const data = this._myDataSource.data.map((data) => {
-        return {
-          name: data[dimension].label,
-          value: data[measure].raw,
-        };
-      });
+  const myChart = echarts.init(this._root, "wight");
+  const option = {
+    color: ['#0070F2', '#D2EFFF', '#4CB1FF', '#89D1FF'],
+    tooltip: {
+      trigger: "item",
+      formatter: "{a} <br/>{b}: {c} ({d}%)",
+    },
 
-      const halfValue = data.reduce((accumulator, item) => accumulator + item.value, 0);
- 
-      data.push({
-        // make an record to fill the bottom 50%
-        value: halfValue,
-        itemStyle: {
-          // stop the chart from rendering this piece
-          color: 'none',
-          decal: {
-            symbol: 'none'
+    series: [
+      {
+        name: '',
+        type: 'pie',
+        radius: ['50%', '100%'], // Corrected radius for full donut
+        center: ['50%', '50%'],
+        label: {
+          show: true,
+          formatter(param) {
+            return param.name + ' (' + param.percent.toFixed(1) + '%)';
           }
         },
-        label: {
-          show: false
-        }
-      });
+        data,
+      },
+    ],
+  };
+  myChart.setOption(option);
+}
 
-      const myChart = echarts.init(this._root, "wight");
-      const option = {
-        color: ['#0070F2', '#D2EFFF', '#4CB1FF', '#89D1FF'],
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b}: {c} ({d}%)",
-        },
-
-        series: [
-          {
-            name: '',
-            type: 'pie',
-            radius: ['40%', '70%'],
-            center: ['50%', '70%'],
-            // adjust the start angle
-            startAngle: 180,
-            label: {
-              show: true,
-              formatter(param) {
-                // correct the percentage
-                return param.name + ' (' + param.percent * 2 + '%)';
-              }
-            },
-            data,
-          },
-   
-
-        ],
-      };
-      myChart.setOption(option);
-    }
   }
 
   customElements.define("com-sap-sample-echarts-half_doughnut", HalfDoughnutPrepped);
