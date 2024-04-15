@@ -12,7 +12,7 @@ var getScriptPromisify = (src) => {
         <div id="root" style="width: 100%; height: 100%;">
         </div>
       `;
-  class HalfDoughnutPrepped extends HTMLElement {
+  class FullDoughnutPrepped extends HTMLElement {
     constructor() {
       super();
 
@@ -54,11 +54,11 @@ var getScriptPromisify = (src) => {
         };
       });
 
-      const halfValue = data.reduce((accumulator, item) => accumulator + item.value, 0);
+      const fullValue = data.reduce((accumulator, item) => accumulator + item.value, 0);
  
       data.push({
         // make an record to fill the bottom 50%
-        value: halfValue,
+        value: fullValue,
         itemStyle: {
           // stop the chart from rendering this piece
           color: 'none',
@@ -83,7 +83,7 @@ var getScriptPromisify = (src) => {
           {
             name: '',
             type: 'pie',
-            radius: ['40%', '70%'],
+            radius: ['50%', '100%'],
             center: ['50%', '70%'],
             // adjust the start angle
             startAngle: 180,
@@ -104,5 +104,5 @@ var getScriptPromisify = (src) => {
     }
   }
 
-  customElements.define("com-sap-sample-echarts-half_doughnut", HalfDoughnutPrepped);
+  customElements.define("com-sap-sample-echarts-full_doughnut", FullDoughnutPrepped);
 })();
