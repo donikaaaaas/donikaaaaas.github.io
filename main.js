@@ -12,7 +12,7 @@ var getScriptPromisify = (src) => {
         <div id="root" style="width: 100%; height: 100%;">
         </div>
       `;
-  class HalfDoughnutPrepped extends HTMLElement {
+  class FullDoughnutPrepped extends HTMLElement {
     constructor() {
       super();
 
@@ -82,5 +82,5 @@ var getScriptPromisify = (src) => {
 
   }
 
-  customElements.define("com-sap-sample-echarts-half_doughnut", HalfDoughnutPrepped);
+  customElements.define("com-sap-sample-echarts-full_doughnut", FullDoughnutPrepped);
 })();
