@@ -86,7 +86,7 @@ var getScriptPromisify = (src) => {
             radius: ['40%', '70%'],
             center: ['50%', '70%'],
             // adjust the start angle
-            startAngle: 180,
+            startAngle: 360,
             label: {
               show: true,
               formatter(param) {
