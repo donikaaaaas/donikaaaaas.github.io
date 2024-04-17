@@ -54,7 +54,7 @@ var getScriptPromisify = (src) => {
         };
       });
 
-      const halfValue = data.reduce((accumulator, item) => accumulator + item.value, 0);
+      const halfValue = data;
  
       data.push({
         // make an record to fill the bottom 50%
