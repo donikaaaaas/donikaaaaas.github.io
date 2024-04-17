@@ -83,7 +83,7 @@ var getScriptPromisify = (src) => {
           {
             name: '',
             type: 'pie',
-            radius: '50%',
+            radius: '100%',
             center: ['50%', '70%'],
             // adjust the start angle
             label: {
