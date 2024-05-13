@@ -6,7 +6,6 @@
     "vendor": "4P DS",
     "eula": "",
     "license": "",
-    "icon": "https:\/\/raw.githubusercontent.com\/SAP-Custom-Widget\/CircleProgressBarWidget\/main\/icon.png",
     "webcomponents": [
         {
             "kind": "main",
@@ -27,7 +26,6 @@
         "percentage": {
             "description": "Percentage",
             "type": "integer",
-            "default": 75
         },
         "barColor": {
             "description": "Bar Color",
